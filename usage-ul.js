@@ -65,12 +65,14 @@
       },
       
       visitFirstChild = function(){
-        var outer = this;
-        this.parentUl.appendChild(this.ul);
+        var outer = this,
+            ul = document.createElement("ul");
+            
+        this.parentUl.appendChild(ul);
         
         return {
-          parentUl : outer.ul,
-          ul : document.createElement("ul"),
+          parentUl : ul,
+          ul : ul
         }
         
       },
@@ -78,8 +80,10 @@
       visitLastChild = function(){},
       
       //a tree starting at h2 ending at h3
-      tree = createTree(2,4);
+      tree = createTree(1,5);
   
   displayTree(tree,visitElement,visitFirstChild, visitLastChild, context);
+  
+  console.log(document.getElementById("toc-js").innerHTML);
   
 })();
